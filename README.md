@@ -18,6 +18,4 @@ lease feel free to contribute, help or recommend any new features for my program
 
 ## License
 
-[![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)
-
-To the extent possible under law, [Matias Singers](http://mts.io) has waived all copyright and related or neighboring rights to this work.
+[![CC0](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/quick-guide-gplv3.html)
