@@ -31,7 +31,7 @@ Zorabot.on('message', function(message) {
 	}
 });
 
-Zorabot.loginWithToken("MjE3MDM1MTUzMjc5NTQ5NDQw.CrS9zw.fYoMAczLTdAMs0qTxGSdohr5-AQ", logIn);
+Zorabot.loginWithToken("your_token", logIn);
 
 
 /***********  BIBLIOTECA DE RESPUESTAS ************/
