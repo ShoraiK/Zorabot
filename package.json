@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ShoraiK/Zorabot#readme",
   "dependencies": {
-    "discord.js": "^9.1.0"
+    "discord.js": "^9.1.0",
+    "request": "^2.74.0"
   }
 }

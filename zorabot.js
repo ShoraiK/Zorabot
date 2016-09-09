@@ -1,23 +1,24 @@
 /************************************************************************
-    
+
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
-  
+
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-  
+
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ************************************************************************/
 
 var Discord = require("discord.js");
-var openWeather = require('openweather');
+var request = require('request');
 var Zorabot = new Discord.Client();
+
 
 Zorabot.on('message', function(message) {
 	if(message.author != "Zorabot") {
@@ -30,10 +31,10 @@ Zorabot.on('message', function(message) {
 	}
 });
 
-Zorabot.loginWithToken("MjE3MDM1MTUzMjc5NTQ5NDQw.CpuxWg.p1V5rE7pvpeNFJ3A_FUcY6csgvw", logIn);
+Zorabot.loginWithToken("MjE3MDM1MTUzMjc5NTQ5NDQw.CrS9zw.fYoMAczLTdAMs0qTxGSdohr5-AQ", logIn);
 
 
-/***********  BIBLIOTECA DE RESPUESTAS ************/ 
+/***********  BIBLIOTECA DE RESPUESTAS ************/
 
 var responseObject = {
 	"o/"	: "o/",
@@ -57,24 +58,25 @@ function logIn(error, token) {
 
 function elTiempo(mensaje) {
 	var loc = mensaje.substring(3);
-	var out = null;
-	
+	var out = "";
+
 	if(loc == "") {
-		out = "Por favor, indica una localización válida >_< (Ejemplo:  .w Madrid)"
+		out = "Por favor, ¡indica una localización válida! >_< (Ejemplo:  .w Madrid o .w Madrid,ES)";
 	}
 	else {
-		openWeather.getWeather(city, function(result) {
-			console.log(result);
-		},  [8efba9c322cd0ff864d0ad9708f4fb65]); // ERROR CON EL PUTO TOKEN :<
-		
-		{
-			"city": loc
-		}
-		
-		out = "el tiempo de hoy para " + loc + " es..." + " ¡despejado!";
-	}
-	
-	return out;
+    request(
+      {
+        method: 'GET',
+        uri: 'http://api.openweathermap.org/data/2.5/weather?q='+loc+'&appid=8efba9c322cd0ff864d0ad9708f4fb65',
+        gzip: true
+      },
+      function (error, response, body) {
+        // body is the decompressed response body
+				out = JSON.parse(body);
+      }
+		);
+  }
+  return out;
 }
 
 /**************************************************/
