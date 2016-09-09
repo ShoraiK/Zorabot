@@ -1,23 +1,22 @@
 <img src="https://blog.discordapp.com/content/images/2016/01/masbot.png" align="right" width="40%" />
 # Zorabot
-> Just another minimalist bot for dicord
+> Bot interactivo para discord programado en javascript con node.js y discord.js.
 
 
 ## Features
-- [sindresorhus/pageres](https://github.com/sindresorhus/pageres) - Project logo. Clear description of what the project does. Build badges. Demo screenshot. Simple install and usage sections. Includes an examples section with common uses.
+- Tabla de mensajes de interacción con el bot.
+- Integración con OpenWeather (WIP).
 
 ## TODO
-- ["How To Write A Readme"](http://jfhbrook.github.io/2011/11/09/readmes.html) - *Joshua Holbrook*
+- Error en el token con OpenWeather.
 
 
 ## Contribute
 
-Contributions are always welcome!
-lease feel free to contribute, help or recommend any new features for my program.
+¡Las contribuciones son siempre bienvenidas!
+Por favor, siéntete libre de contribuir, ayudar o recomendar cualquier nueva implementación para la aplicación :)
 
 
 ## License
 
-[![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)
-
-To the extent possible under law, [Matias Singers](http://mts.io) has waived all copyright and related or neighboring rights to this work.
+[![CC0](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/quick-guide-gplv3.html)
