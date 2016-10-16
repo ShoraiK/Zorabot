@@ -16,6 +16,8 @@
 ¡Las contribuciones son siempre bienvenidas!
 Por favor, siéntete libre de contribuir, ayudar o recomendar cualquier nueva implementación para la aplicación :)
 
+[Documentación de Discord.js](http://hydrabolt.github.io/discord.js/#!/docs/tag/master/file/general/Welcome)
+
 
 ## License
 
