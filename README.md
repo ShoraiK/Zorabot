@@ -5,11 +5,13 @@
 
 ## Implementaciones
 - Tabla de mensajes de interacción con el bot.
-- Integración con OpenWeather (WIP).
+- Integración con OpenWeather.
 
 ## TODO
-- Solucionado el error de la llamada a Openweather, habría que analizar cómo implementar esta función asíncrona para que llegue la respuesta al chat de Discord.
-
+- Paleta de colores a la temperatura según el valor que se trae de Openweathermap.
+- Autopublicar release en canal haciendo llamada a la web del fansub.
+- Guardado automático del log del canal del staff.
+- Aumentar el número de respuestas del bot.
 
 ## ¡Ayuda a mejorar Zorabot!
 ¡Las contribuciones son siempre bienvenidas!
