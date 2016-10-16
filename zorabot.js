@@ -15,10 +15,23 @@
 
 ************************************************************************/
 
-var Discord = require("discord.js");
-var request = require('request');
-var Zorabot = new Discord.Client();
+const Discord = require("discord.js");
+const pack = require('./package.json');
+const request = require('request');
+const Zorabot = new Discord.Client();
+const winston = require('winston');
 
+
+/***********  BIBLIOTECA DE RESPUESTAS ************/
+
+var responseObject = {
+	"o/"	 : "o/",
+	"nas"	 : "nas",
+	"buenas" : "nas",
+	"hola"	 : "¿qué tal?"
+};
+
+/**************************************************/
 
 Zorabot.on('message', function(message) {
 	if(message.author != "Zorabot") {
@@ -26,57 +39,47 @@ Zorabot.on('message', function(message) {
 			message.reply(responseObject[message.content.toLowerCase()]);
 		}
 		else if(message.content.startsWith(".w")) {
-			message.reply(elTiempo(message.content));
+			elTiempo(message);
 		}
 	}
 });
 
-Zorabot.loginWithToken("your_token", logIn);
-
-
-/***********  BIBLIOTECA DE RESPUESTAS ************/
-
-var responseObject = {
-	"o/"	: "o/",
-	"nas"	: "nas",
-	"hola"	: "¿qué tal?"
-};
-
-/**************************************************/
-
 /***********  BIBLIOTECA DE FUNCIONES  ***********/
 
-function logIn(error, token) {
-	if (error) {
-		console.log('Error al loguear: ' + error);
-	}
-	else {
-		console.log('Login correcto. \n\nToken: ' + token);
-	}
-  return;
-}
-
 function elTiempo(mensaje) {
-	var loc = mensaje.substring(3);
-	var out = "";
+	let loc = mensaje.content.substring(3);
 
 	if(loc == "") {
-		out = "Por favor, ¡indica una localización válida! >_< (Ejemplo:  .w Madrid o .w Madrid,ES)";
+		mensaje.channel.sendMessage('Por favor, ¡indica una localización válida! >_< (Ejemplo:  .w Madrid o .w Madrid,ES)').catch(error => console.log(error.stack));
 	}
 	else {
-    request(
-      {
-        method: 'GET',
-        uri: 'http://api.openweathermap.org/data/2.5/weather?q='+loc+'&appid=8efba9c322cd0ff864d0ad9708f4fb65',
-        gzip: true
-      },
-      function (error, response, body) {
-        // body is the decompressed response body
-				out = JSON.parse(body);
-      }
+		request(
+			{
+				url: 'http://api.openweathermap.org/data/2.5/weather?q='+loc+'&lang=es&appid=8efba9c322cd0ff864d0ad9708f4fb65',
+				json: true
+			},
+			function (error, response, body) {
+				mensaje.channel.sendMessage(':: '+body["name"]+', '+body["sys"]["country"]+' :: '+body['weather'][0]['description']+' :: Temperatura: '+parseFloat(body["main"]["temp"]-273.15).toFixed(2)+'°C :: Presión: '+body["main"]["pressure"]+'mb :: Humedad: '+body["main"]["humidity"]+'%').catch(error => console.log(error.stack));
+				//console.log(body['weather']);
+			}
 		);
-  }
-  return out;
+	}
 }
 
 /**************************************************/
+
+/*************** ZONA DE DEBUGUEO ****************/
+
+Zorabot.on('error', e => {
+	winston.error(e);
+});
+Zorabot.on('warn', e => {
+	winston.warn(e);
+});
+Zorabot.on('debug', e => {
+	winston.info(e);
+});
+
+/**************************************************/
+
+Zorabot.login("DISCORD_TOKEN");
