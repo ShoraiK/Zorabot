@@ -8,7 +8,7 @@
 - Integración con OpenWeather (WIP).
 
 ## TODO
-- Error en el token con OpenWeather.
+- Solucionado el error de la llamada a Openweather, habría que analizar cómo implementar esta función asíncrona para que llegue la respuesta al chat de Discord.
 
 
 ## Contribute
