@@ -2,10 +2,16 @@
 # Zorabot
 > Bot interactivo para discord programado en javascript con node.js y discord.js.
 
+## Comandos
+- .w "Ciudad" (Información meteorológica de tu ciudad. Reemplazar "Ciudad" por la ciudad de la que se quiera extraer la información).
+- .zorabot (Información sobre el bot) [WIP].
+- .látigo/latigar/latiga (Dale con el látigo del bot a tus súbditos :D).
 
 ## Implementaciones
 - Tabla de mensajes de interacción con el bot.
 - Integración con OpenWeather.
+- Latiga a tus esclavos del fansub.
+- Información útil sobre el bot (consumo de RAM, CPU, etc) [WIP].
 
 ## TODO
 - Paleta de colores a la temperatura según el valor que se trae de Openweathermap.
