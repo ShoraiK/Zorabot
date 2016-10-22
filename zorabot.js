@@ -41,6 +41,17 @@ Zorabot.on('message', function(message) {
 		else if(message.content.startsWith(".w")) {
 			elTiempo(message);
 		}
+		else if(
+		message.content.startsWith(".latiga") || 
+		message.content.startsWith(".látigo") || 
+		message.content.startsWith(".latigo") || 
+		message.content.startsWith(".latigar")) 
+		{
+			animarFansubbers(message);
+		}
+		else if(message.content.startsWith(".Zorabot") || message.content.startsWith(".zorabot")) {
+			zorabot(message);
+		}
 	}
 });
 
@@ -64,6 +75,39 @@ function elTiempo(mensaje) {
 			}
 		);
 	}
+}
+
+function animarFansubbers(mensaje) {
+	let respuesta1 = [
+		"¡a tus órdenes!", 
+		"¡ahora mismo!", 
+		"¡por supuesto!", 
+		"¡marchando!", 
+		"¡oído cocina!",
+		"¡ahí que va!",
+		"¡marchando una de látigo!"
+	];
+	let respuesta2 = [
+		"¡¡¡CURRAD VAGOS DEL MAL!!! :<", 
+		"¿Váis a currar o qué? e__e", 
+		"¡¡Currad pedazo de vagos!! :<", 
+		"No tenéis remedio... ¡¡CURRAD!! :<", 
+		"Me rindo... Pero dejo mi fotito latigando igualmente <3"
+	];
+	
+	mensaje.reply(respuesta1[Math.floor(Math.random() * respuesta1.length)]+"\n");
+	mensaje.channel.sendFile("/home/segova/Zorabot/img/latigo.jpg", "latigo.jpg", respuesta2[Math.floor(Math.random() * respuesta2.length)])
+}
+
+function zorabot(mensaje) {
+	let respuesta2 = [
+		"Esta soy yo, la reina del canal muahahahahahaha :D", 
+		"Venga, te voy a enseñar una imagen de mí :)", 
+		"¡Esta soy yo! Molo, ¿eh?", 
+		"¡Soy el ro-bot más avanzdo del mundo! :D", 
+		"Pues sí, he aquí mi figura... ¿A que molo?"
+	];
+	mensaje.channel.sendFile("/home/segova/Zorabot/img/Meika.png", "Meika.png", respuesta2[Math.floor(Math.random() * respuesta2.length)])
 }
 
 /**************************************************/
