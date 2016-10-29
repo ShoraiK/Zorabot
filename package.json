@@ -1,12 +1,13 @@
 {
   "name": "zorabot",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "Bot de discord para el fansub de Aozora",
   "main": "zorabot.js",
   "dependencies": {
     "discord.js": "^9.3.0",
     "forecast": "^0.3.1",
-    "jquery": "^3.1.1"
+    "jquery": "^3.1.1",
+    "wpapi": "^0.11.0"
   },
   "devDependencies": {},
   "scripts": {
