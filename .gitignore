@@ -49,7 +49,6 @@ Temporary Items
 # Others directories
 .idea
 config.json
-ExtFunctions.js
 img/
 logs/
 node_modules
