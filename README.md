@@ -33,7 +33,7 @@ Por favor, siéntete libre de contribuir, ayudar o recomendar cualquier nueva im
 ## Documentación y utilidades
 - [Instalación de Node.js](https://nodejs.org/en/)
 - [Instalación de NPM](https://www.npmjs.com/)
-- [Documentación de Discord.js](http://hydrabolt.github.io/discord.js/#!/docs/tag/master/file/general/Welcome)
+- [Documentación de Discord.js](https://discord.js.org/#/docs/main/10.0.1/general/welcome)
 
 
 ## Licencia
