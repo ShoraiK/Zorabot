@@ -3,21 +3,28 @@
 > Bot interactivo para discord programado en javascript con node.js y discord.js.
 
 ## Comandos
+- .g 'palabra' (Búsqueda en google de una palabra o un conjunto de ellas).
 - .w "Ciudad" (Información meteorológica de tu ciudad. Reemplazar "Ciudad" por la ciudad de la que se quiera extraer la información).
 - .zorabot (Información sobre el bot) [WIP].
 - .látigo/latigar/latiga (Dale con el látigo del bot a tus súbditos :D).
+- .slap @nombre (El slapper clásico del IRC).
+- .r 'número' (Saca un número aleatorio del 1 al número que se le haya especificado.).
+- .log (Descarga vía DM el log completo del canal en el que se escribe dicho comando.).
 
 ## Implementaciones
 - Tabla de mensajes de interacción con el bot.
+- Búsqueda avanzada con el motor de google.
 - Integración con OpenWeather.
 - Latiga a tus esclavos del fansub.
 - Información útil sobre el bot (consumo de RAM, CPU, etc) [WIP].
+- Autopublicar release en canal haciendo llamada a la web del fansub.
+- Guardado automático del log de cualquier canal en el que se encuentre el bot.
 
 ## TODO
 - Paleta de colores a la temperatura según el valor que se trae de Openweathermap.
-- Autopublicar release en canal haciendo llamada a la web del fansub.
-- Guardado automático del log del canal del staff.
 - Aumentar el número de respuestas del bot.
+- .np (now playing) Tema actual de tu reproductor usando la API de last.fm en node.
+- Registro de usuarios en el bot para automatizar la ciudad al llamar al comando ".w" y el usuario de last.fm en ".np"
 
 ## ¡Ayuda a mejorar Zorabot!
 ¡Las contribuciones son siempre bienvenidas!

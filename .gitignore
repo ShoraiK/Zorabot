@@ -47,5 +47,11 @@ Temporary Items
 .apdisk
 
 # Others directories
+.idea
+config.json
+ExtFunctions.js
+img/
+logs/
 node_modules
-start.bat
+nohup.out
+output.log
