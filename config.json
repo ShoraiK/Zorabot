@@ -3,5 +3,6 @@
   "DiscordToken"        : "YOUR_DISCORD_TOKEN_ID",
   "OpenWeatherMapId"    : "YOUR_OPENWEATHER_MAP_ID",
   "GoogleApiId"         : "YOUR_GOOGLE_DEVELOPER_API_ID",
-  "GoogleSearchEngine"  : "YOUR_GOOGLE_SEARCH_ENGINE_ID"
+  "GoogleSearchEngine"  : "YOUR_GOOGLE_SEARCH_ENGINE_ID",
+  "LastFmApiKey"        : "YOUR_LAST_FM_API_KEY",
 }

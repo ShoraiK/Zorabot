@@ -10,6 +10,7 @@
 - .slap @nombre (El slapper clásico del IRC).
 - .r 'número' (Saca un número aleatorio del 1 al número que se le haya especificado.).
 - .log (Descarga vía DM el log completo del canal en el que se escribe dicho comando.).
+- .np (now playing) Tema actual de tu reproductor usando la API de last.fm en node.
 
 ## Implementaciones
 - Tabla de mensajes de interacción con el bot.
@@ -19,12 +20,11 @@
 - Información útil sobre el bot (consumo de RAM, CPU, etc) [WIP].
 - Autopublicar release en canal haciendo llamada a la web del fansub.
 - Guardado automático del log de cualquier canal en el que se encuentre el bot.
+- Priemra iteración sobre registro y control de usuarios para usar ciertas funciones personalizadas (ejemplo: .np). [WIP]
 
 ## TODO
 - Paleta de colores a la temperatura según el valor que se trae de Openweathermap.
 - Aumentar el número de respuestas del bot.
-- .np (now playing) Tema actual de tu reproductor usando la API de last.fm en node.
-- Registro de usuarios en el bot para automatizar la ciudad al llamar al comando ".w" y el usuario de last.fm en ".np"
 
 ## ¡Ayuda a mejorar Zorabot!
 ¡Las contribuciones son siempre bienvenidas!

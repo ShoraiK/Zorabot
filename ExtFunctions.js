@@ -1,10 +1,17 @@
 /***************  REQUIRES DE NODE  ***************/
 
 const google = require('googleapis');
+
 const customsearch = google.customsearch('v1');
+
 const request = require('request');
+
 const fs = require('fs');
+
 const config = require("./config.json");
+
+const db = require('diskdb');
+
 
 /***********  BIBLIOTECA DE FUNCIONES  ***********/
 
@@ -93,7 +100,7 @@ module.exports = {
         let img = latigoImg[Math.floor(Math.random() * latigoImg.length)];
 
         mensaje.reply(respuesta1[Math.floor(Math.random() * respuesta1.length)]);
-        mensaje.channel.sendFile("./img/"+img, img, respuesta2[Math.floor(Math.random() * respuesta2.length)])
+        mensaje.channel.sendFile("./img/"+img, img, respuesta2[Math.floor(Math.random() * respuesta2.length)]);
     },
 
     zorabot : function(mensaje) { // WIP
@@ -167,7 +174,60 @@ module.exports = {
             "**.zorabot** --> Información técnica sobre el bot.\n\n**.help** --> Descripción de todos los comandos disponibles.\n\n"+
             "**.slap @nombre** --> El slapper de to' la vida del IRC.\n\n"+
             "**.r 'número'** --> Saca un número aleatorio del 1 al número que se le haya especificado.\n\n"+
-            "**.log** --> Descarga vía DM el log completo del canal en el que se escribe dicho comando.";
+            "**.log** --> Descarga vía DM el log completo del canal en el que se escribe dicho comando.\n\n"+
+            "**.np register 'usuario_de_lasf.fm'** --> Enlaza tu usario de lastf.fm a tu usuario de discord.\n\n"+
+            "**.np** --> Muestra la canción que estás reproduciendo actualmente (Solo usuarios registrados con el comando anterior) **Requiere estar sincronizado con last.fm**";
         mensaje.channel.sendMessage(help);
+    },
+
+    nowPlaying : function(mensaje, userId) {
+        db.connect('./db', ['lastfm']);
+        let LastfmUser = db.lastfm.find({userId : userId})[0]['lastFmName'];
+
+        request(
+            {
+                url: 'http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user='+LastfmUser+'&api_key='+config["LastFmApiKey"]+'&format=json',
+                json: true
+            },
+            function (error, response, body) {
+                let artista = body['recenttracks']['track'][0]['artist']['#text'] || " ";
+                let tema = body['recenttracks']['track'][0]['name'] || " ";
+                let album = body['recenttracks']['track'][0]['album']['#text'] || " ";
+                let cover = body['recenttracks']['track'][0]['image'][2]['#text'] || "./img/no-cover.png";
+
+                mensaje.channel.sendFile(cover, "cover.png", ":headphones: :headphones: ```"+artista+" - "+tema+" (del álbum "+album+")```");
+            }
+        );
+    },
+
+    LastFmValidUser : function(mensaje, userId, LastfmUser) {
+        request(
+            {
+                url: 'http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user='+LastfmUser+'&api_key='+config["LastFmApiKey"]+'&format=json',
+                json: true
+            },
+            function (error, response, body) {
+                if(Object.keys(body).length > 2) {
+                    mensaje.reply("el usuario que estás intentando registrar no existe en last.fm.");
+                }
+                else {
+                    db.connect('./db', ['lastfm']);
+
+                    if(db.lastfm.find({lastFmName : LastfmUser}).length > 0) {
+                        mensaje.reply("Ya hay registrado un usuario con ese nombre... :neutral_face:");
+                    }
+                    else {
+                        let user = {
+                            userId      : userId,
+                            lastFmName  : LastfmUser
+                        };
+
+                        db.lastfm.save([user]);
+
+                        mensaje.channel.sendFile(body['user']['image'][1]['#text'], "avatar.png", "Se ha enlazado correctamente a tu cuenta ("+body['user']["name"]+") de last.fm. :smiley:");
+                    }
+                }
+            }
+        );
     }
 };

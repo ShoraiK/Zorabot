@@ -25,6 +25,8 @@ const funcionExterna = require('./ExtFunctions');
 
 const config = require("./config.json");
 
+const db = require('diskdb');
+
 /*********************************************
  Página web de donde se obtiene la información.
  Debe tener el plugin WP REST API instalado.
@@ -120,6 +122,31 @@ Zorabot.on('message', function(message) {
                     else {
                         message.reply("Este comando no sirve de nada en un privado... :confused:");
                     }
+                }
+            }
+            else if(message.content.startsWith(".np")) {
+                if(message.content.startsWith(".np register ")) {
+                    let usuario = message.content.toString().substr(13);
+
+                    if(usuario == "") {
+                        message.reply('indica un usuario a registrar... :unamused:');
+                    }
+                    else {
+                        funcionExterna.LastFmValidUser(message, message.author.id, usuario)
+                    }
+                }
+                else if (message.content.toString().substr(3) == "") {
+                    db.connect('./db', ['lastfm']);
+
+                    if(db.lastfm.find({userId : message.author.id}).length > 0) {
+                        funcionExterna.nowPlaying(message,message.author.id);
+                    }
+                    else {
+                        message.reply("antes de usar este comando, debes estar registrado con un **usuario** **válido** de last.fm (Ejemplo: .np register Shorai91).")
+                    }
+                }
+                else {
+                    message.reply('asegúrate de haber escrito correctamente el comando. \n\n*Ejemplo: .np register "Shorai" (Sin las comillas y que exista en last.fm) o .np si ya estás registrado.*\n');
                 }
             }
         }
