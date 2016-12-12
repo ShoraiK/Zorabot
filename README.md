@@ -20,7 +20,7 @@
 - Información útil sobre el bot (consumo de RAM, CPU, etc) [WIP].
 - Autopublicar release en canal haciendo llamada a la web del fansub.
 - Guardado automático del log de cualquier canal en el que se encuentre el bot.
-- Priemra iteración sobre registro y control de usuarios para usar ciertas funciones personalizadas (ejemplo: .np). [WIP]
+- Primera iteración sobre registro y control de usuarios para usar ciertas funciones personalizadas (ejemplo: .np). [WIP]
 
 ## TODO
 - Paleta de colores a la temperatura según el valor que se trae de Openweathermap.
