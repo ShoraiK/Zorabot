@@ -47,10 +47,4 @@ Temporary Items
 .apdisk
 
 # Others directories
-.idea
-config.json
-img/
-logs/
-node_modules
-nohup.out
-output.log
+Zorabot_dev
