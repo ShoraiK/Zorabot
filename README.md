@@ -1,4 +1,4 @@
-<img src="https://blog.discordapp.com/content/images/2016/01/masbot.png" align="right" width="40%" />
+<img src="https://newagesoldier.com/wp-content/uploads/2016/12/masbot.png" align="right" width="40%" />
 # Zorabot
 > Bot interactivo para discord programado en javascript con node.js y discord.js.
 
