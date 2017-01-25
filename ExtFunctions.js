@@ -1,61 +1,18 @@
 /***************  REQUIRES DE NODE  ***************/
 
 const google = require('googleapis');
-
 const customsearch = google.customsearch('v1');
-
 const request = require('request');
-
 const jsdom = require('jsdom');
-
 const fs = require('fs');
-
 const config = require("./config.json");
-
 const db = require('diskdb');
-
 const Discord = require('discord.js');
 
 
 /***********  BIBLIOTECA DE FUNCIONES  ***********/
 
 module.exports = {
-
-    guardaLog : function(mensaje) {
-        let nombreLog = mensaje.channel['guild']['name'].toString().replace(" ", "_")+"_"+mensaje.channel['name'].toString().replace(" ", "_")+".log";
-        let msj = "["+mensaje.createdAt.toString().substring(4,24)+"]"+" <"+mensaje.author['username']+"> "+mensaje.content.toString();
-
-        try {
-            fs.readFile("./logs/"+nombreLog, 'utf8', function(err, data) {
-                if(err) {
-                    fs.writeFile("./logs/"+nombreLog, msj, (err) => {
-                        if (err) { console.log('Error al guardar el archivo'); }
-                    });
-                }
-                else {
-                    fs.writeFile("./logs/"+nombreLog, data+"\n"+msj, (err) => {
-                        if (err) { console.log('Error al guardar el archivo'); }
-                    });
-                }
-            });
-        }
-        catch (err) {
-            fs.writeFile("./logs/"+nombreLog, data+"\n"+msj, (err) => {
-                if (err) { console.log('Error al guardar el archivo'); }
-            });
-        }
-    },
-
-    enviaLog : function(mensaje) {
-        let nombreLog = mensaje.channel['guild'].toString().replace(" ", "_")+"_"+mensaje.channel['name'].toString().replace(" ", "_")+".log";
-
-        try {
-            mensaje.author.sendFile("./logs/"+nombreLog, nombreLog, "Aquí tienes el log de completo del canal "+mensaje.channel['name'].toString()+" de "+mensaje.channel['guild'].toString())+":";
-        }
-        catch (err) {
-            mensaje.reply("El log al que estás intentando acceder no existe o está vacío. :slight_frown:")
-        }
-    },
 
     elTiempo : function(mensaje) {
         let loc = mensaje.content.substring(3);
@@ -178,9 +135,9 @@ module.exports = {
             "**.zorabot** --> Información técnica sobre el bot.\n\n**.help** --> Descripción de todos los comandos disponibles.\n\n"+
             "**.slap @nombre** --> El slapper de to' la vida del IRC.\n\n"+
             "**.r 'número'** --> Saca un número aleatorio del 1 al número que se le haya especificado.\n\n"+
-            "**.log** --> Descarga vía DM el log completo del canal en el que se escribe dicho comando.\n\n"+
             "**.np register 'usuario_de_lasf.fm'** --> Enlaza tu usario de lastf.fm a tu usuario de discord.\n\n"+
-            "**.np** --> Muestra la canción que estás reproduciendo actualmente (Solo usuarios registrados con el comando anterior) **Requiere estar sincronizado con last.fm**";
+            "**.np** --> Muestra la canción que estás reproduciendo actualmente (Solo usuarios registrados con el comando anterior) **Requiere estar sincronizado con last.fm**"+
+            "**.fl 'palabra'** --> Busca en Frozen Layer información sobre un anime/manga/whatever.\n\n";
         mensaje.channel.sendMessage(help);
     },
 
@@ -286,7 +243,7 @@ module.exports = {
                     });
 
                     if (!results.length) {
-                        mensaje.channel.sendMessage('No hay ningún resultado');
+                        mensaje.channel.sendMessage('No he encontrado nada... :confused:');
                         return;
                     }
 

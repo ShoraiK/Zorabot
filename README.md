@@ -1,4 +1,4 @@
-<img src="https://newagesoldier.com/wp-content/uploads/2016/12/masbot.png" align="right" width="40%" />
+<img src="https://lh3.googleusercontent.com/6NwL_zhcUA4tmHMLLZV4_4NXRWm7C2QpjGGtDi2BVE6lJ1wViaJq-bEVvdJ4ASu-2CRwMYmJ98ZM6jM=w1218-h848" align="right" width="40%" />
 # Zorabot
 > Bot interactivo para discord programado en javascript con node.js y discord.js.
 
@@ -12,9 +12,8 @@
 | `.látigo/latigar/latiga` | Dale con el látigo del bot a tus súbditos :D |
 | `.slap @nombre` | El slapper clásico del IRC |
 | `.r 'número'` | Saca un número aleatorio del 1 al número que se le haya especificado |
-| `.log` | Descarga vía DM el log completo del canal en el que se escribe dicho comando |
 | `.np` | (now playing) Tema actual de tu reproductor usando la API de last.fm en node |
-| `.fl 'palabra'` | Búsqueda en Frozen Layer |
+| `.fl 'palabra'` | Busca en Frozen Layer información sobre un anime/manga/whatever |
 
 ## Implementaciones
 - Tabla de mensajes de interacción con el bot.

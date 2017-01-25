@@ -16,15 +16,10 @@
 ************************************************************************/
 
 const Discord = require("discord.js");
-
 const Zorabot = new Discord.Client();
-
 const winston = require('winston');
-
 const funcionExterna = require('./ExtFunctions');
-
 const config = require("./config.json");
-
 const db = require('diskdb');
 
 /*********************************************
@@ -53,9 +48,6 @@ setInterval(function() {
 }, 300000);
 
 Zorabot.on('message', function(message) {
-    if(message.channel.type != "dm") {
-        funcionExterna.guardaLog(message);
-    }
 	if(message.author !== Zorabot.user) {
         if (responseObject[message.content.toLowerCase()]) {
             message.reply(responseObject[message.content.toLowerCase()]);
@@ -108,21 +100,6 @@ Zorabot.on('message', function(message) {
             }
             else if(message.content.startsWith(".r ")) {
                 funcionExterna.randomNumber(message);
-            }
-            else if (message.content.startsWith(".log")) {
-                if(!message.content.toString().substr(4)) {
-                    if(message.channel.type != "dm") {
-                        if(message.member.roles.find("name", "Admin") || message.member.roles.find("name", "Staff") || message.member.roles.find("name", "Jubileta")) {
-                            funcionExterna.enviaLog(message);
-                        }
-                        else {
-                            message.reply(denied);
-                        }
-                    }
-                    else {
-                        message.reply("Este comando no sirve de nada en un privado... :confused:");
-                    }
-                }
             }
             else if(message.content.startsWith(".np")) {
                 if(message.content.startsWith(".np register ")) {

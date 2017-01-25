@@ -1,17 +1,19 @@
 {
   "name": "zorabot",
-  "version": "1.3.0",
-  "description": "Bot de discord para el fansub de Aozora",
+  "version": "1.3.1",
+  "description": "Just simple discord bot for fansubs using discord.js",
   "main": "zorabot.js",
   "dependencies": {
     "discord.js": "hydrabolt/discord.js#indev-prism",
     "diskdb": "^0.1.17",
+    "erlpack": "github:hammerandchisel/erlpack",
     "forecast": "^0.3.1",
     "googleapis": "^14.1.0",
     "jquery": "^3.1.1",
     "jsdom": "^9.9.1",
     "last.fm.api": "^0.1.3",
     "node-opus": "^0.2.4",
+    "uws": "^0.12.0",
     "winston": "^2.3.0",
     "wpapi": "^0.11.0"
   },
