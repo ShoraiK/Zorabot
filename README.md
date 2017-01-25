@@ -1,4 +1,4 @@
-<img src="https://lh3.googleusercontent.com/6NwL_zhcUA4tmHMLLZV4_4NXRWm7C2QpjGGtDi2BVE6lJ1wViaJq-bEVvdJ4ASu-2CRwMYmJ98ZM6jM=w1218-h848" align="right" width="40%" />
+<img src="http://i.imgur.com/uHETUca.png" align="right" width="40%" />
 # Zorabot
 > Bot interactivo para discord programado en javascript con node.js y discord.js.
 
@@ -22,7 +22,6 @@
 - Latiga a tus esclavos del fansub.
 - Información útil sobre el bot (consumo de RAM, CPU, etc) [WIP].
 - Autopublicar release en canal haciendo llamada a la web del fansub.
-- Guardado automático del log de cualquier canal en el que se encuentre el bot.
 - Primera iteración sobre registro y control de usuarios para usar ciertas funciones personalizadas (ejemplo: .np). [WIP]
 
 ## TODO
