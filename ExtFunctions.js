@@ -287,6 +287,7 @@ module.exports = {
 
                     if (!results.length) {
                         mensaje.channel.sendMessage('No hay ningún resultado');
+                        return;
                     }
 
                     const firstResult = results[0];
