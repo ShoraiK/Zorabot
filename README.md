@@ -3,14 +3,18 @@
 > Bot interactivo para discord programado en javascript con node.js y discord.js.
 
 ## Comandos
-- .g 'palabra' (Búsqueda en google de una palabra o un conjunto de ellas).
-- .w "Ciudad" (Información meteorológica de tu ciudad. Reemplazar "Ciudad" por la ciudad de la que se quiera extraer la información).
-- .zorabot (Información sobre el bot) [WIP].
-- .látigo/latigar/latiga (Dale con el látigo del bot a tus súbditos :D).
-- .slap @nombre (El slapper clásico del IRC).
-- .r 'número' (Saca un número aleatorio del 1 al número que se le haya especificado.).
-- .log (Descarga vía DM el log completo del canal en el que se escribe dicho comando.).
-- .np (now playing) Tema actual de tu reproductor usando la API de last.fm en node.
+
+| Comando | Descripción |
+|---|---|
+| `.g 'palabra'` | Búsqueda en google de una palabra o un conjunto de ellas |
+| `.w "Ciudad"` | Información meteorológica de tu ciudad. Reemplazar "Ciudad" por la ciudad de la que se quiera extraer la información |
+| `.zorabot` | Información sobre el bot [WIP] |
+| `.látigo/latigar/latiga` | Dale con el látigo del bot a tus súbditos :D |
+| `.slap @nombre` | El slapper clásico del IRC |
+| `.r 'número'` | Saca un número aleatorio del 1 al número que se le haya especificado |
+| `.log` | Descarga vía DM el log completo del canal en el que se escribe dicho comando |
+| `.np` | (now playing) Tema actual de tu reproductor usando la API de last.fm en node |
+| `.fl 'palabra'` | Búsqueda en Frozen Layer |
 
 ## Implementaciones
 - Tabla de mensajes de interacción con el bot.
