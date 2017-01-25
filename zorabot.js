@@ -149,6 +149,9 @@ Zorabot.on('message', function(message) {
                     message.reply('asegúrate de haber escrito correctamente el comando. \n\n*Ejemplo: .np register "Shorai" (Sin las comillas y que exista en last.fm) o .np si ya estás registrado.*\n');
                 }
             }
+            else if (message.content.startsWith('.fl ')) {
+                funcionExterna.searchFLN(message);
+            }
         }
 	}
 });

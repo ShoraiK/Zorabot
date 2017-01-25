@@ -6,11 +6,15 @@ const customsearch = google.customsearch('v1');
 
 const request = require('request');
 
+const jsdom = require('jsdom');
+
 const fs = require('fs');
 
 const config = require("./config.json");
 
 const db = require('diskdb');
+
+const Discord = require('discord.js');
 
 
 /***********  BIBLIOTECA DE FUNCIONES  ***********/
@@ -229,5 +233,136 @@ module.exports = {
                 }
             }
         );
+    },
+
+    searchFLN : function(mensaje) {
+        const busqueda = mensaje.content.substr('.fl '.length);
+
+        const url = 'https://www.frozen-layer.com/buscar';
+
+        const form = {
+            busqueda,
+            utf8: '✓',
+        };
+
+        const options = {
+            form,
+        };
+
+        return request(url, options, function(err, response, html) {
+            if (err) {
+                return console.error(err.stack);
+            }
+
+            const { statusCode } = response;
+            if (statusCode >= 400 && statusCode <= 599) {
+                const err = new Error(
+                    `Frozen Layer respondió con un estado HTTP ${statusCode}`
+                );
+
+                return console.error(err.stack);
+            }
+
+            return jsdom.env({
+                html,
+                url,
+                done: function(err, window) {
+                    if (err) {
+                        return console.error(err.stack);
+                    }
+
+                    const { document } = window;
+
+                    const results = Array.from(
+                        document.querySelectorAll('.titulo a[href*="/animes/"]')
+                    ).map(function(el) {
+                        const url = el.href;
+                        const title = el.textContent.trim();
+
+                        return {
+                            title,
+                            url,
+                        };
+                    });
+
+                    if (!results.length) {
+                        mensaje.channel.sendMessage('No hay ningún resultado');
+                    }
+
+                    const firstResult = results[0];
+
+                    const {
+                        title,
+                        url,
+                    } = firstResult;
+
+                    return request.get(url, function(err, response, body) {
+                        if (err) {
+                            return console.error(err.stack);
+                        }
+
+                        const { statusCode } = response;
+                        if (statusCode >= 400 && statusCode <= 599) {
+                            const err = new Error(
+                                `Frozen Layer respondió con un estado HTTP ${statusCode}`
+                            );
+
+                            return console.error(err.stack);
+                        }
+
+                        return jsdom.env(body, function(err, window) {
+                            if (err) {
+                                return console.error(err.stack);
+                            }
+
+                            const { document } = window;
+
+                            const description = document.getElementById('sinopsis').textContent.trim();
+
+                            const thumbnail = document.querySelector('img[alt="Portada"]').src;
+
+                            const fields = Array.from(
+                                document.querySelectorAll('.an_list li')
+                            )
+                                .map(function(el) {
+                                    return el.textContent.split(':');
+                                })
+                                .reduce(function(data, pair) {
+                                    let [key, value] = pair;
+                                    key = key.trim();
+                                    value = value.trim() || 'N/A';
+
+                                    value = value.replace(/\n/g, ' ');
+                                    value = value.replace(/\( /g, '(');
+
+                                    data[key] = value;
+
+                                    return data;
+                                }, {});
+
+                            const embed = new Discord.RichEmbed()
+                                .setTitle(title)
+                                .setDescription(description)
+                                .setThumbnail(thumbnail)
+                                .setURL(url);
+
+                            Object.keys(fields).forEach(function(key) {
+                                const value = fields[key];
+                                let isInline = true;
+                                if (key.toLowerCase() === 'genero') {
+                                    isInline = false;
+                                }
+                                embed.addField(key, value, isInline);
+                            });
+
+                            mensaje.channel.sendEmbed(embed)
+                                .catch(function(err) {
+                                    console.error(err.stack);
+                                });
+                        });
+                    });
+                }
+            });
+        });
     }
 };

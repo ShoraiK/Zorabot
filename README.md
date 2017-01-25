@@ -14,6 +14,7 @@
 | `.r 'número'` | Saca un número aleatorio del 1 al número que se le haya especificado |
 | `.log` | Descarga vía DM el log completo del canal en el que se escribe dicho comando |
 | `.np` | (now playing) Tema actual de tu reproductor usando la API de last.fm en node |
+| `.fl 'palabra'` | Búsqueda en Frozen Layer |
 
 ## Implementaciones
 - Tabla de mensajes de interacción con el bot.
