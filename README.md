@@ -1,4 +1,4 @@
-<img src="http://i.imgur.com/uHETUca.png" align="right" width="40%" />
+<img src="http://i.imgur.com/uHETUca.png" align="right" width="30%" />
 # Zorabot
 > Bot interactivo para discord programado en javascript con node.js y discord.js.
 
