@@ -49,85 +49,94 @@ setInterval(function() {
 
 Zorabot.on('message', function(message) {
 	if(message.author !== Zorabot.user) {
-        if (responseObject[message.content.toLowerCase()]) {
+	    if (responseObject[message.content.toLowerCase()]) {
             message.reply(responseObject[message.content.toLowerCase()]);
         }
-        else if(message.content.startsWith(".")) {
-            if(message.content.startsWith(".w ")) {
-                funcionExterna.elTiempo(message);
-            }
-            else if(
-                message.content.startsWith(".latiga") ||
-                message.content.startsWith(".látigo") ||
-                message.content.startsWith(".latigo") ||
-                message.content.startsWith(".latigar"))
-            {
-                if(message.channel.type != "dm") {
-                    if(message.member.roles.find("name", "Admin") || message.member.roles.find("name", "Staff") || message.member.roles.find("name", "Jubileta")) {
-                        funcionExterna.animarFansubbers(message);
+        else if(!message.content.startsWith(".")) {
+            return 0;
+        }
+        else{
+            let params = message.content.split(' ');
+            let command = params[0];
+
+	        switch (command) {
+	            case '.w':
+                    funcionExterna.elTiempo(message);
+                    break;
+
+                case '.latiga': case '.látigo': case '.latigo': case '.latigar':
+                    if(message.channel.type != "dm") {
+                        if(message.member.roles.find("name", "Admin") || message.member.roles.find("name", "Staff") || message.member.roles.find("name", "Jubileta")) {
+                            funcionExterna.animarFansubbers(message);
+                        }
+                        else {
+                            message.reply(denied);
+                        }
                     }
                     else {
-                        message.reply(denied);
+                        message.reply("Este comando no sirve de nada en un privado... :confused:");
                     }
-                }
-                else {
-                    message.reply("Este comando no sirve de nada en un privado... :confused:");
-                }
-            }
-            else if(message.content.startsWith(".Zorabot") || message.content.startsWith(".zorabot")) {
-                if(message.channel.type != "dm") {
-                    if(message.member.roles.find("name", "Admin") || message.member.roles.find("name", "Staff") || message.member.roles.find("name", "Jubileta")) {
-                        funcionExterna.zorabot(message);
+                    break;
+
+                case '.Zorabot': case '.zorabot':
+                    if(message.channel.type != "dm") {
+                        if(message.member.roles.find("name", "Admin") || message.member.roles.find("name", "Staff") || message.member.roles.find("name", "Jubileta")) {
+                            funcionExterna.zorabot(message);
+                        }
+                        else {
+                            message.reply(denied);
+                        }
                     }
                     else {
-                        message.reply(denied);
+                        message.reply("Este comando no sirve de nada en un privado... :confused:");
                     }
-                }
-                else {
-                    message.reply("Este comando no sirve de nada en un privado... :confused:");
-                }
-            }
-            else if(message.content.startsWith(".g ")) {
-                funcionExterna.buscarTermino(message);
-            }
-            else if(message.content.startsWith(".help")) {
-                if(!message.content.toString().substr(5)) {
+                    break;
+
+                case '.g':
+                    funcionExterna.buscarTermino(params[1]);
+                    break;
+
+                case '.help':
                     funcionExterna.helpExt(message);
-                }
-            }
-            else if(message.content.startsWith(".slap ")) {
-                slap(message);
-            }
-            else if(message.content.startsWith(".r ")) {
-                funcionExterna.randomNumber(message);
-            }
-            else if(message.content.startsWith(".np")) {
-                if(message.content.startsWith(".np register ")) {
-                    let usuario = message.content.toString().substr(13);
+                    break;
 
-                    if(usuario == "") {
-                        message.reply('indica un usuario a registrar... :unamused:');
+                case '.slap':
+                    slap(message);
+                    break;
+
+                case '.r':
+                    funcionExterna.randomNumber(message);
+                    break;
+
+                case '.np':
+                    if(message.content.startsWith(".np register ")) {
+                        let usuario = message.content.toString().substr(13);
+
+                        if(usuario == "") {
+                            message.reply('indica un usuario a registrar... :unamused:');
+                        }
+                        else {
+                            funcionExterna.LastFmValidUser(message, message.author.id, usuario);
+                        }
+                    }
+                    else if (message.content.toString().substr(3) == "") {
+                        db.connect('./db', ['lastfm']);
+
+                        if(db.lastfm.find({userId : message.author.id}).length > 0) {
+                            funcionExterna.nowPlaying(message,message.author.id);
+                        }
+                        else {
+                            message.reply("antes de usar este comando, debes estar registrado con un **usuario** **válido** de last.fm (Ejemplo: .np register Shorai91).");
+                        }
                     }
                     else {
-                        funcionExterna.LastFmValidUser(message, message.author.id, usuario)
+                        message.reply('asegúrate de haber escrito correctamente el comando. \n\n*Ejemplo: .np register "Shorai" (Sin las comillas y que exista en last.fm) o .np si ya estás registrado.*\n');
                     }
-                }
-                else if (message.content.toString().substr(3) == "") {
-                    db.connect('./db', ['lastfm']);
+                    break;
 
-                    if(db.lastfm.find({userId : message.author.id}).length > 0) {
-                        funcionExterna.nowPlaying(message,message.author.id);
-                    }
-                    else {
-                        message.reply("antes de usar este comando, debes estar registrado con un **usuario** **válido** de last.fm (Ejemplo: .np register Shorai91).")
-                    }
-                }
-                else {
-                    message.reply('asegúrate de haber escrito correctamente el comando. \n\n*Ejemplo: .np register "Shorai" (Sin las comillas y que exista en last.fm) o .np si ya estás registrado.*\n');
-                }
-            }
-            else if (message.content.startsWith('.fl ')) {
-                funcionExterna.searchFLN(message);
+                case '.fl':
+                    funcionExterna.searchFLN(message);
+                    break;
             }
         }
 	}
@@ -167,14 +176,25 @@ function slap(mensaje) {
     let slap = "";
 
     if(mensaje.content.substring(6) == "") {
-        mensaje.channel.sendMessage("¿Y a quién se supone que tengo que darle? :unamused:")
+        mensaje.channel.sendMessage("¿Y a quién se supone que tengo que darle? :unamused:");
     }
     else {
         if(Zorabot.users.find("username", mensaje.content.substring(6)) != null) {
             nick2 = Zorabot.users.find("username", mensaje.content.substring(6));
+
+            if(nick1 == nick2) {
+                return mensaje.reply('eres tonto, ¿verdad? :unamused:');
+            }
+        }
+        else if(Zorabot.users.get(mensaje.content.substring(8, mensaje.content.length-1)) != null) {
+            nick2 = mensaje.content.substring(6);
+
+            if(nick1 == nick2) {
+                return mensaje.reply('eres tonto, ¿verdad? :unamused:');
+            }
         }
         else {
-            nick2 = mensaje.content.substring(6);
+            return mensaje.reply('no encuentro al usuario "'+mensaje.content.substring(6)+'"... :confused:');
         }
 
         slap = nick1 + " slaps " + nick2 + " around a bit with a large trout.";
@@ -182,7 +202,7 @@ function slap(mensaje) {
         if(mensaje.content.substring(6) == "<@217035153279549440>" || mensaje.content.substring(6).toLowerCase() == "zorabot") {
             slap = "(╯°□°）╯︵ ┻━┻";
         }
-        mensaje.channel.sendMessage(slap);
+        return mensaje.channel.sendMessage(slap);
     }
 }
 
