@@ -1,6 +1,6 @@
 {
   "name": "zorabot",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Just simple discord bot for fansubs using discord.js",
   "main": "zorabot.js",
   "dependencies": {

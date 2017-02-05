@@ -8,7 +8,7 @@
 |---|---|
 | `.g 'palabra'` | Búsqueda en google de una palabra o un conjunto de ellas |
 | `.w "Ciudad"` | Información meteorológica de tu ciudad. Reemplazar "Ciudad" por la ciudad de la que se quiera extraer la información |
-| `.zorabot` | Información sobre el bot [WIP] |
+| `.zorabot` | Información sobre el bot |
 | `.látigo/latigar/latiga` | Dale con el látigo del bot a tus súbditos :D |
 | `.slap @nombre` | El slapper clásico del IRC |
 | `.r 'número'` | Saca un número aleatorio del 1 al número que se le haya especificado |
@@ -20,7 +20,7 @@
 - Búsqueda avanzada con el motor de google.
 - Integración con OpenWeather.
 - Latiga a tus esclavos del fansub.
-- Información útil sobre el bot (consumo de RAM, CPU, etc) [WIP].
+- Información útil sobre el bot [Primera iteración].
 - Autopublicar release en canal haciendo llamada a la web del fansub.
 - Primera iteración sobre registro y control de usuarios para usar ciertas funciones personalizadas (ejemplo: .np). [WIP]
 

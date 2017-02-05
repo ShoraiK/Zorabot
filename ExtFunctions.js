@@ -64,15 +64,31 @@ module.exports = {
         mensaje.channel.sendFile("./img/"+img, img, respuesta2[Math.floor(Math.random() * respuesta2.length)]);
     },
 
-    zorabot : function(mensaje) { // WIP
-        let respuesta2 = [
+    zorabot : function(mensaje, info) { // WIP
+        let i = 0;
+        let respuesta = [
             "Esta soy yo, la reina del canal muahahahahahaha :smiley:",
-            "Venga, te voy a enseñar una imagen de mí :smiley:",
+            "Venga, te voy a enseñar algo de mí :smiley:",
             "¡Esta soy yo! Molo, ¿eh?",
             "¡Soy el ro-bot más avanzdo del mundo! :smiley:",
-            "Pues sí, he aquí mi figura... ¿A que molo?"
+            "Pues sí, he aquí mis entrañas... ¿A que molo?"
         ];
-        mensaje.channel.sendFile("./img/Meika.png", "Meika.png", respuesta2[Math.floor(Math.random() * respuesta2.length)]);
+        //mensaje.channel.sendFile("./img/Meika.png", "Meika.png", respuesta2[Math.floor(Math.random() * respuesta2.length)]);
+
+        const embed = new Discord.RichEmbed()
+            .setTitle('Información general sobre el bot')
+            .setDescription(respuesta[Math.floor(Math.random() * respuesta.length)])
+            .setColor('BLUE')
+            .setThumbnail('http://i.imgur.com/owStj33.png')
+            .setURL(require('./package.json').homepage);
+
+        for(i; i < info.length; i++) {
+            embed.addField(info[i]["name"], info[i]["value"], true);
+        }
+
+        mensaje.channel.sendEmbed(embed).catch(function(err) {
+            console.error(err.stack);
+        });
     },
 
     buscarTermino : function(mensaje) {
@@ -322,5 +338,5 @@ module.exports = {
                 }
             });
         });
-    }
+    },
 };

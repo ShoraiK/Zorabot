@@ -81,7 +81,7 @@ Zorabot.on('message', function(message) {
                 case '.Zorabot': case '.zorabot':
                     if(message.channel.type != "dm") {
                         if(message.member.roles.find("name", "Admin") || message.member.roles.find("name", "Staff") || message.member.roles.find("name", "Jubileta")) {
-                            funcionExterna.zorabot(message);
+                            funcionExterna.zorabot(message, info());
                         }
                         else {
                             message.reply(denied);
@@ -204,6 +204,39 @@ function slap(mensaje) {
         }
         return mensaje.channel.sendMessage(slap);
     }
+}
+
+function info() {
+    let cd = 24 * 60 * 60 * 1000,
+        ch = 60 * 60 * 1000,
+        d = Math.floor(Zorabot.uptime / cd),
+        h = Math.floor( (Zorabot.uptime - d * cd) / ch),
+        m = Math.round( (Zorabot.uptime - d * cd - h * ch) / 60000);
+
+    let info = [
+        {
+            "name"  : "Nombre:",
+            "value" : require('./package.json').name
+        },
+        {
+            "name"  : "Versión:",
+            "value" : require('./package.json').version
+        },
+        {
+            "name"  : "Conetado a...",
+            "value" : Zorabot.guilds.array().length+" servidores y "+Zorabot.channels.array().length+" canales."
+        },
+        {
+            "name"  : "Creador:",
+            "value" : require('./package.json').author
+        },
+        {
+            "name"  : "Tiempo conectado:",
+            "value" : d+" días, "+h+" horas, "+m+" minutos"
+        }
+    ];
+
+    return info;
 }
 
 /*************** ZONA DE DEBUGUEO ****************/
