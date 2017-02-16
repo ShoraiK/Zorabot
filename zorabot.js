@@ -223,7 +223,7 @@ function info() {
             "value" : require('./package.json').version
         },
         {
-            "name"  : "Conetado a...",
+            "name"  : "Conectado a...",
             "value" : Zorabot.guilds.array().length+" servidores y "+Zorabot.channels.array().length+" canales."
         },
         {

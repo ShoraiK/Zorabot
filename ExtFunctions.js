@@ -73,7 +73,6 @@ module.exports = {
             "¡Soy el ro-bot más avanzdo del mundo! :smiley:",
             "Pues sí, he aquí mis entrañas... ¿A que molo?"
         ];
-        //mensaje.channel.sendFile("./img/Meika.png", "Meika.png", respuesta2[Math.floor(Math.random() * respuesta2.length)]);
 
         const embed = new Discord.RichEmbed()
             .setTitle('Información general sobre el bot')
